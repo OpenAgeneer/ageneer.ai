@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'Wix Madefor Display';
+    font-style: normal;
+    font-weight: 400 700;
+    font-display: swap;
+    src: url('/fonts/WixMadeforDisplay-Regular.woff2') format('woff2');
+  }
+
+  html {
+    @apply font-sans text-neutral-900 antialiased;
+  }
+
+  body {
+    @apply min-h-screen bg-white;
+  }
+}
