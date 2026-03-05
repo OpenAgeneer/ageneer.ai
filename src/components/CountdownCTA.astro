@@ -1,0 +1,110 @@
+---
+---
+
+<section id="waitlist" class="relative overflow-hidden bg-gradient-to-br from-brand-700 via-brand-800 to-brand-900 py-24 sm:py-32">
+  <!-- Background decoration -->
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,rgba(255,255,255,0.1),transparent)]"></div>
+
+  <div class="relative mx-auto max-w-4xl px-6 text-center">
+    <!-- Headline -->
+    <div class="reveal">
+      <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
+        Open Source Launch
+      </h2>
+      <p class="mt-2 text-xl font-semibold text-brand-200">May 1, 2026</p>
+    </div>
+
+    <!-- Countdown timer -->
+    <div class="reveal reveal-delay-1 mt-10 flex items-center justify-center gap-4 sm:gap-6">
+      <div class="flex flex-col items-center">
+        <div class="flex h-16 w-16 items-center justify-center rounded-xl bg-white/10 backdrop-blur-sm sm:h-20 sm:w-20">
+          <span id="countdown-days" class="text-2xl font-bold text-white sm:text-3xl">--</span>
+        </div>
+        <span class="mt-2 text-xs font-medium uppercase tracking-wider text-brand-200">Days</span>
+      </div>
+      <span class="text-2xl font-light text-white/40 sm:text-3xl">:</span>
+      <div class="flex flex-col items-center">
+        <div class="flex h-16 w-16 items-center justify-center rounded-xl bg-white/10 backdrop-blur-sm sm:h-20 sm:w-20">
+          <span id="countdown-hours" class="text-2xl font-bold text-white sm:text-3xl">--</span>
+        </div>
+        <span class="mt-2 text-xs font-medium uppercase tracking-wider text-brand-200">Hours</span>
+      </div>
+      <span class="text-2xl font-light text-white/40 sm:text-3xl">:</span>
+      <div class="flex flex-col items-center">
+        <div class="flex h-16 w-16 items-center justify-center rounded-xl bg-white/10 backdrop-blur-sm sm:h-20 sm:w-20">
+          <span id="countdown-minutes" class="text-2xl font-bold text-white sm:text-3xl">--</span>
+        </div>
+        <span class="mt-2 text-xs font-medium uppercase tracking-wider text-brand-200">Minutes</span>
+      </div>
+      <span class="text-2xl font-light text-white/40 sm:text-3xl">:</span>
+      <div class="flex flex-col items-center">
+        <div class="flex h-16 w-16 items-center justify-center rounded-xl bg-white/10 backdrop-blur-sm sm:h-20 sm:w-20">
+          <span id="countdown-seconds" class="text-2xl font-bold text-white sm:text-3xl">--</span>
+        </div>
+        <span class="mt-2 text-xs font-medium uppercase tracking-wider text-brand-200">Seconds</span>
+      </div>
+    </div>
+
+    <!-- Subtitle -->
+    <p class="reveal reveal-delay-2 mt-10 text-lg text-brand-100">
+      Join the private beta now and be the first to know when Ageneer goes open source.
+    </p>
+
+    <!-- Tally.so embed -->
+    <div class="reveal reveal-delay-3 mx-auto mt-10 max-w-xl">
+      <iframe
+        data-tally-src="https://tally.so/embed/gD5Eod?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+        loading="lazy"
+        width="100%"
+        height="200"
+        frameborder="0"
+        marginheight="0"
+        marginwidth="0"
+        title="Join the Ageneer Waitlist"
+        style="border: none;"
+      ></iframe>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Countdown to May 1, 2026 00:00:00 UTC
+  const launchDate = new Date('2026-05-01T00:00:00Z').getTime();
+
+  function updateCountdown() {
+    const now = Date.now();
+    const diff = launchDate - now;
+
+    if (diff <= 0) {
+      document.getElementById('countdown-days')!.textContent = '0';
+      document.getElementById('countdown-hours')!.textContent = '0';
+      document.getElementById('countdown-minutes')!.textContent = '0';
+      document.getElementById('countdown-seconds')!.textContent = '0';
+      return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    const daysEl = document.getElementById('countdown-days');
+    const hoursEl = document.getElementById('countdown-hours');
+    const minutesEl = document.getElementById('countdown-minutes');
+    const secondsEl = document.getElementById('countdown-seconds');
+
+    if (daysEl) daysEl.textContent = String(days);
+    if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
+    if (minutesEl) minutesEl.textContent = String(minutes).padStart(2, '0');
+    if (secondsEl) secondsEl.textContent = String(seconds).padStart(2, '0');
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // Load Tally embed script
+  const tallyScript = document.createElement('script');
+  tallyScript.src = 'https://tally.so/widgets/embed.js';
+  tallyScript.async = true;
+  document.head.appendChild(tallyScript);
+</script>
