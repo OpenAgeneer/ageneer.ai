@@ -6,20 +6,58 @@ interface Props {
   description?: string;
 }
 
-const { title, description = 'ageneer.ai' } = Astro.props;
+const { title, description = 'Ageneer is an AI agent that integrates into your tech team and autonomously handles tasks. Private beta now. Open source May 1, 2026.' } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="https://ageneer.ai/og-image.png" />
+    <meta property="og:url" content="https://ageneer.ai" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@ageneerai" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://ageneer.ai/og-image.png" />
+
+    <!-- Preload fonts -->
+    <link rel="preload" href="/fonts/WixMadeforDisplay-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/WixMadeforDisplay-Bold.woff2" as="font" type="font/woff2" crossorigin />
+
+    <!-- Tally preconnect -->
+    <link rel="preconnect" href="https://tally.so" />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
   </head>
   <body>
     <slot />
+
+    <!-- Scroll reveal observer -->
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    </script>
   </body>
 </html>

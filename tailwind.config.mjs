@@ -46,6 +46,12 @@ export default {
       fontSize: {
         '2xs': ['0.625rem', { lineHeight: '0.875rem' }],
       },
+      animation: {
+        'marquee': 'marquee 40s linear infinite',
+        'marquee-slow': 'marquee 50s linear infinite',
+        'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+        'blink': 'blink 1s step-end infinite',
+      },
     },
   },
   plugins: [],
